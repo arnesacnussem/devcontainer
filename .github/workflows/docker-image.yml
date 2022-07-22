@@ -31,4 +31,4 @@ jobs:
         with:
           context: ${{ matrix.names }}
           push: true
-          tags: ${{ matrix.names }}
+          tags: sacnussem/devcontainer:${{ matrix.names }}
