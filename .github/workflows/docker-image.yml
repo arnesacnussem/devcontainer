@@ -29,6 +29,6 @@ jobs:
         name: ${{ matrix.names }}
         uses: docker/build-push-action@v3
         with:
-          context: ${{ matrix.names }}
+          context: ./${{ matrix.names }}
           push: true
           tags: sacnussem/devcontainer:${{ matrix.names }}
