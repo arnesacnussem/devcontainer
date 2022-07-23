@@ -39,3 +39,5 @@ jobs:
       # it doesn't support dynamic 'uses'
       - uses: ./hpc-focal
         if: ${{ matrix.names == 'hpc-focal' }}
+        with:
+          name: ${{ matrix.names }}

@@ -7,14 +7,14 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: ${{ input.name }}-base
+    - name: base
       uses: docker/build-push-action@v3
       with:
         context: "{{ defaultContext }}:${{ inputs.name }}"
         push: true
         cache-to: type=inline
         tags: sacnussem/devcontainer:${{ inputs.name }}
-    - name: ${{ input.name }}-base
+    - name: quartus
       uses: docker/build-push-action@v3
       with:
         context: "{{ defaultContext }}:${{ inputs.name }}"
