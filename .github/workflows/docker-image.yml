@@ -33,7 +33,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - uses: actions/checkout
           
-# it doesn't support dynamic 'uses'
+      # it doesn't support dynamic 'uses'
       - uses: ./hpc-focal
         if: ${{ matrix.names == 'hpc-focal' }}
