@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        names: [hpc-focal]
-
+        names: 
+         - hpc-focal
     steps:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
