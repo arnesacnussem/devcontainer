@@ -7,15 +7,16 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     curl dumb-init zsh bash htop locales man nano git dos2unix\
     ca-certificates apt-transport-https software-properties-common wget \
-    procps openssh-client sudo vim.tiny lsb-release rsync build-essential
+    procps openssh-client sudo vim.tiny lsb-release rsync build-essential \
+    pip octave octave-common octave-communications octave-communications-common \
+    libpam-fprintd libfprint-2-2 fprintd
 
 RUN wget -q https://xpra.org/gpg-2022.asc -O- | apt-key add - && \
     wget -q https://xpra.org/gpg-2018.asc -O- | apt-key add - && \
     add-apt-repository "deb https://xpra.org/ focal main" && \
     curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
-    apt-get install -y xpra
+    apt-get install -y xpra nodejs
     
-RUN apt-get install -y nodejs pip octave octave-common octave-communications octave-communications-common
 RUN npm -g install yarn && yarn global add nodemon
 
 COPY install-quartus.sh .
