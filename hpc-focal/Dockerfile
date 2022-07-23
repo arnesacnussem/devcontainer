@@ -22,5 +22,5 @@ RUN npm -g install yarn && yarn global add nodemon
 COPY install-quartus.sh .
 RUN sh install-quartus.sh
 
-ENV DISPLAY=:0
+ENV DISPLAY=:100
 ENV PATH=/opt/intelFPGA_lite/21.1/quartus/bin:$PATH
