@@ -1,5 +1,5 @@
-name: Build Steps of ${{ inputs.name }}
-description: "Build steps of ${{ inputs.name }}"
+name: Build Steps
+description: "Build Steps"
 inputs:
   name:
     description: "Name of the action"
