@@ -34,6 +34,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - uses: ./${{ matrix.names }}
+      - uses: ${{ matrix.names }}
         with:
           name: ${{ matrix.names }}
