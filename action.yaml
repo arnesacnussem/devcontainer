@@ -1,0 +1,15 @@
+name: Build Steps of ${{ inputs.name }}
+description: "Build steps of ${{ inputs.name }}"
+inputs:
+  name:
+    description: "Name of the action"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Docker build and push
+      uses: docker/build-push-action@v3
+      with:
+        context: "{{ defaultContext }}:${{ inputs.name }}"
+        push: true
+        tags: sacnussem/devcontainer:${{ inputs.name }}

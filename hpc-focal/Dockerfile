@@ -16,10 +16,7 @@ RUN wget -q https://xpra.org/gpg-2022.asc -O- | apt-key add - && \
     add-apt-repository "deb https://xpra.org/ focal main" && \
     curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
     apt-get install -y xpra nodejs
-    
+
 RUN npm -g install yarn && yarn global add nodemon
 
 ENV DISPLAY=:100
-# COPY install-quartus.sh .
-# RUN sh install-quartus.sh
-# ENV PATH=/opt/intelFPGA_lite/21.1/quartus/bin:$PATH

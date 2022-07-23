@@ -6,6 +6,11 @@ on:
 
 jobs:
   build:
+    services:
+      registry:
+        image: registry:2
+        ports:
+          - 5000:5000
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,9 +34,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: ${{ matrix.names }}
-        uses: docker/build-push-action@v3
+      - uses: ./${{ matrix.names }}
         with:
-          context: "{{defaultContext}}:${{ matrix.names }}"
-          push: true
-          tags: sacnussem/devcontainer:${{ matrix.names }}
+          name: ${{ matrix.names }}
