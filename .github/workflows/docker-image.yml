@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        names: 
-         - hpc-focal
+        names:
+          - hpc-focal
     steps:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
@@ -33,7 +33,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - uses: "/${{ matrix.names }}"
-        with:
-          name: ${{ matrix.names }}
+          
+# it doesn't support dynamic 'uses'
+      - uses: ./hpc-focal
+        if: ${{ matrix.names == 'hpc-focal' }}
