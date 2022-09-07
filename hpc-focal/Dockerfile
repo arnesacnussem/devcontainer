@@ -20,7 +20,12 @@ RUN wget -q https://xpra.org/gpg-2022.asc -O- | apt-key add - && \
 RUN npm -g install yarn && yarn global add nodemon
 
 RUN wget -q --show-progress --progress=bar:force:noscroll -O- https://github.com/YosysHQ/oss-cad-suite-build/releases/download/$(date +%Y-%m-%d --date="yesterday" -u)/oss-cad-suite-linux-x64-$(date +%Y%m%d --date="yesterday" -u).tgz | tar zxf - -C /opt
-RUN apt-get update && apt-get install -y libgnat-9 zlib1g-dev
+RUN apt-get update && apt-get install -y libgnat-9 zlib1g-dev libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe -o /tmp/miniconda_installer.sh && \
+    bash /tmp/miniconda_installer.sh -b -u -p /usr/lib/miniconda && \
+    rm /tmp/miniconda_installer.sh
+
+
 ENV PATH=/opt/oss-cad-suite/bin:$PATH
 ENV JAVA_HOME=/usr/lib/jvm/default-java
 ENV DISPLAY=:100
