@@ -26,6 +26,6 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
     rm /tmp/miniconda_installer.sh
 
 
-ENV PATH=/opt/oss-cad-suite/bin:$PATH
+ENV PATH=/opt/oss-cad-suite/bin:/usr/lib/miniconda/bin:$PATH
 ENV JAVA_HOME=/usr/lib/jvm/default-java
 ENV DISPLAY=:100
