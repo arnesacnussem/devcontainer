@@ -9,13 +9,15 @@ RUN apt-get update && apt-get install -y \
     ca-certificates apt-transport-https software-properties-common wget \
     procps openssh-client sudo vim.tiny lsb-release rsync build-essential \
     pip octave octave-common octave-communications octave-communications-common \
-    libpam-fprintd libfprint-2-2 fprintd openjdk-17-jdk
+    libpam-fprintd libfprint-2-2 fprintd openjdk-17-jdk gnupg2 software-properties-common
 
-RUN wget -q https://xpra.org/gpg-2022.asc -O- | apt-key add - && \
-    wget -q https://xpra.org/gpg-2018.asc -O- | apt-key add - && \
+RUN curl https://xpra.org/gpg-2022.asc | apt-key add - && \
+    curl https://xpra.org/gpg-2018.asc | apt-key add - && \
+    curl https://packages.grafana.com/gpg.key | apt-key add - && \
     add-apt-repository "deb https://xpra.org/ focal main" && \
+    add-apt-repository "deb https://packages.grafana.com/oss/deb stable main" && \
     curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
-    apt-get install -y xpra nodejs
+    apt-get install -y xpra nodejs grafana prometheus prometheus-pushgateway
 
 RUN npm -g install yarn && yarn global add nodemon
 
