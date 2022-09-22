@@ -1,5 +1,5 @@
 # docker build . -f base.Dockerfile -t sacnussem/devcontainer:hpc-focal
-FROM mcr.microsoft.com/vscode/devcontainers/base:0-focal
+FROM nvidia/cuda:11.7.1-devel-ubuntu20.04
 
 ENV LANG=en_US.UTF-8
 ARG DEBIAN_FRONTEND=noninteractive
@@ -16,8 +16,9 @@ RUN curl https://xpra.org/gpg-2022.asc | apt-key add - && \
     curl https://packages.grafana.com/gpg.key | apt-key add - && \
     add-apt-repository "deb https://xpra.org/ focal main" && \
     add-apt-repository "deb https://packages.grafana.com/oss/deb stable main" && \
+    echo 'deb [trusted=yes] https://developer.download.nvidia.com/hpc-sdk/ubuntu/amd64 /' | sudo tee /etc/apt/sources.list.d/nvhpc.list && \
     curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
-    apt-get install -y xpra nodejs grafana prometheus prometheus-pushgateway
+    apt-get install -y xpra nodejs grafana prometheus prometheus-pushgateway nvhpc-22-7 libopenblas-dev
 
 RUN npm -g install yarn && yarn global add nodemon
 
